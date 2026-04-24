@@ -298,7 +298,7 @@ export default function App() {
     setAiError(false);
     
     const apiKey = "AIzaSyBnlMCikX5HdVcNNJI4wf1zpaIQyufhHec"; 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
     const systemInstruction = "You are a precise nutrition expert. Estimate the nutritional content of the food provided by the user (via text, image, or both). Return ONLY a valid JSON object with EXACTLY these five keys: 'name' (string, a short clean name), 'calories' (number), 'protein' (number in grams), 'fibre' (number in grams), and 'reasoning' (string, a concise 1-2 sentence explanation of your portion and ingredient assumptions). Do not include markdown formatting like ```json in the output. If the user is refining, adjust the previous estimate accordingly.";
 
@@ -422,7 +422,7 @@ export default function App() {
   const generateDailyInsight = async () => {
     setIsGeneratingInsight(true);
     const apiKey = "";
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
     
     const totals = getTotalsForDate(todayStr);
     const todayLogs = logs.filter(l => l.date === todayStr);
@@ -461,7 +461,7 @@ export default function App() {
   const generateMealSuggestions = async () => {
     setIsGeneratingMeals(true);
     const apiKey = "";
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
     
     const totals = getTotalsForDate(todayStr);
     const remCal = Math.max(0, goals.calories - totals.calories);

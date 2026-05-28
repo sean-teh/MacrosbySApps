@@ -293,15 +293,18 @@ export default function App() {
   };
 
   // --- AI Integration ---
-  const generateEstimate = async (text, isRefinement = false) => {
-    setIsGenerating(true);
-    setAiError(false);
-    
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+// Replace ONLY the apiKey and url lines. Keep everything from systemInstruction downwards exactly the same.
 
-    const systemInstruction = "You are a precise nutrition expert. Estimate the nutritional content of the food provided by the user (via text, image, or both). Return ONLY a valid JSON object with EXACTLY these five keys: 'name' (string, a short clean name), 'calories' (number), 'protein' (number in grams), 'fibre' (number in grams), and 'reasoning' (string, a concise 1-2 sentence explanation of your portion and ingredient assumptions). Do not include markdown formatting like ```json in the output. If the user is refining, adjust the previous estimate accordingly.";
+// --- AI Integration ---
+const generateEstimate = async (text, isRefinement = false) => {
+  setIsGenerating(true);
+  setAiError(false);
 
+  const url = '/api/gemini';
+
+  const systemInstruction = "You are a precise nutrition expert. Estimate the nutritional content...
+  // ... rest of the function remains untouched
+  
     const newHistory = [...chatHistory];
     if (isRefinement && draft) {
       newHistory.push({ role: "model", parts: [{ text: JSON.stringify(draft) }] });
@@ -421,9 +424,8 @@ export default function App() {
 
   const generateDailyInsight = async () => {
     setIsGeneratingInsight(true);
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-    
+const url = '/api/gemini';
+
     const totals = getTotalsForDate(todayStr);
     const todayLogs = logs.filter(l => l.date === todayStr);
     
@@ -460,9 +462,8 @@ export default function App() {
 
   const generateMealSuggestions = async () => {
     setIsGeneratingMeals(true);
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-    
+ const url = '/api/gemini';
+
     const totals = getTotalsForDate(todayStr);
     const remCal = Math.max(0, goals.calories - totals.calories);
     const remPro = Math.max(0, goals.protein - totals.protein);

@@ -300,9 +300,9 @@ const generateEstimate = async (text, isRefinement = false) => {
   setIsGenerating(true);
   setAiError(false);
 
-  const url = '/api/gemini';
+const url = '/api/gemini';
 
-  const systemInstruction = "You are a precise nutrition expert. Estimate the nutritional content...
+  const systemInstruction = "You are a precise nutrition expert. Estimate the nutritional content of the food provided by the user (via text, image, or both). Return ONLY a valid JSON object with EXACTLY these five keys: 'name' (string, a short clean name), 'calories' (number), 'protein' (number in grams), 'fibre' (number in grams), and 'reasoning' (string, a concise 1-2 sentence explanation of your portion and ingredient assumptions). Do not include markdown formatting like ```json in the output. If the user is refining, adjust the previous estimate accordingly.";
   // ... rest of the function remains untouched
   
     const newHistory = [...chatHistory];
